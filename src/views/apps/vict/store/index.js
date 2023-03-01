@@ -16,7 +16,26 @@ export const getData = createAsyncThunk('Container/getData', async params => {
   //   totalPages: response.data.page_total
   // }
 })
+export const addUser = createAsyncThunk('appUsers/getApiData', async params => {
+  console.log('param add', params)
+  const FormData = require('form-data')
+  const data = new FormData()
+  data.append('name', 'zzzzzzzz')
+  data.append('thumbnail', 'https://media.travel.com.vn/destination/tf_211224124117_416287.jpg')
+  data.append('time', '5 days 5 nights')
+  data.append('vehicle', 'xe xinh')
+  data.append('departurePlace', 'Ca Mau')
+  data.append('destination', 'Lung Cu')
+  data.append('schedule', 'schedule')
+  data.append('policy', 'policy')
 
+console.log(data)
+  const response = await axios.post('https://travel-website-backend.up.railway.app/api/tour-packages', data)
+
+  console.log('api add', response)
+
+  return response.data
+})
 export const MockData =
 [
   {

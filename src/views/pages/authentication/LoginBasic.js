@@ -28,9 +28,9 @@ import Avatar from '@components/avatar'
 
 // ** Styles
 import '@styles/react/pages/page-authentication.scss'
-const defaultValues = {
-  password: 'admin',
-  loginEmail: 'admin@demo.com'
+const defaultValues = { 
+  loginEmail: 'admin@markapi.com',
+  password: 'aIEOOEoolEquLFRSkDetlbmojVXsYcLX'
 }
 const ToastContent = ({ t, name, role }) => {
   return (
@@ -43,7 +43,7 @@ const ToastContent = ({ t, name, role }) => {
           <h6>{name}</h6>
           <X size={12} className='cursor-pointer' onClick={() => toast.dismiss(t.id)} />
         </div>
-        <span>You have successfully logged in as an {role} user to Vuexy. Now you can start to explore. Enjoy!</span>
+        <span>You have successfully logged in as an {role} user to YourTour. Now you can start to explore. Enjoy!</span>
       </div>
     </div>
   )
@@ -66,13 +66,13 @@ const LoginBasic = () => {
         .then(res => {
           console.log('res login', res)
           const adminAbility = [{action: 'manage', subject: 'all'}]
-          const data = { ...res.data.userData, accessToken: res.data.data.token, refreshToken: res.data.refreshToken, ability: adminAbility }
+          const data = { ...res.data.userData, accessToken: res.data.access_token, refreshToken: res.data.refresh_token, ability: adminAbility }
           dispatch(handleLogin(data))
           ability.update(adminAbility)
           navigate(getHomeRouteForLoggedInUser('admin'))
           
           toast(t => (
-            <ToastContent t={t} role={data.role || 'admin'} name={data.fullName || data.username || 'John Doe'} />
+            <ToastContent t={t} role={data.role || 'admin'} name={data.fullName || data.username || 'Admin'} />
           ))
         })
         .catch(err => console.log(err))
